@@ -1,0 +1,113 @@
+//Q: Study basic file structure of Linux/ Unix system.
+
+Commands:
+
+see files in working directory: ls
+
+check which directory I am working in: 
+
+user@user-HP-ProDesk-400-G4-SFF:~/Aditya Sher/OS Lab/10-09-19 (copy) = part after ~ indicates the directory I am working in
+
+
+we can see permissions associated with these files uinsg: chmod
+
+
+
+****************************************************************
+Unix file system is used to organize and store large amounts of information in a way that makes it easy to manage.
+
+Unix interacts with the data and hardware! in two formats only, either a file or a process.
+
+Data is stored in files in linux, which are in turn stored in directories, these directories form a tree like structure.
+
+The top level directory or root is called as root ( represented by a "/" ) which self justifies its name and purpose!
+
+All other files are children directories or descendents of root!
+
+**The directory structure can be reprsented as below**
+(each new column of arrow -> indicates a new level 
+eg. cp is child of bin)
+
+
+/ (root)-> bin  ->cp
+		->ksh
+		->is
+		->pwd		
+	-> dev
+	-> etc
+		->passwd
+	-> home
+		->mthomas
+			->bin
+			->class stuff
+				->foo
+				->bar
+			->profile
+		->stul
+	-> lib
+	-> mnt
+	-> proc
+	-> root
+	-> sbin
+	-> tmp
+	-> usr
+		->bin
+
+
+/   = denotes root of file system tree
+
+/bin = "binaries" , contains fundamental utilities such as ls or cp (copy), which are generally needed by all users.
+
+/boot= files required for booting process
+
+/dev= devices,file representations of peripherals and pseudo-devices
+
+/etc= Contains system-wide confirguration file and system databases.
+
+/home = home directory for users
+
+/lib = contains system libraries, and critical files such as kernel modules.
+
+/media = default mount point for removable devices, such as USB sticks, media players, etc.
+
+/mnt = mount, filesystem mopuntpoints, used if system has multiple HDD or HDD partitions, also used for filesystems, CD-ROM/DVD drives and so on.
+
+/proc = virtual file system, info about processes as files.
+
+/root = home for superuser "/root" 
+
+/tmp = place for temporary files, cleared upon startup
+
+/usr = holds executables, libraries and shared resources
+
+/usr/bin= binary files residing in operating system which are not at /bin or /sbin
+
+/usr/include= development headers used throughout the system, header files are mostly used by #include directives in c
+
+/usr/lib= stores libraries and data files
+
+/var = place for files that change often
+
+/var/log= system log files
+
+/var/mail= stores mails
+
+/var/spool= print jobs, mail spools, and other queue tasks
+
+/var/tmp: temp files which must be preserved after reboot.
+
+
+
+**Types of uni9x files**
+
+Ordinary Files
+Directories
+Special Files
+Pipes
+Sockets
+Symbolic Links
+ 
+ 
+ 
+ 
+

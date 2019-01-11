@@ -1,0 +1,37 @@
+CPL Lab
+Assignment 1
+
+Title: Implementation of dynamic SET Data Structure
+
+Required functionalities:
+
+is_element_of(x,S) : Checks whether the value of x is in the set S
+is_empty(S): Checks whether set is empty
+size(S) or cardinality : Returns number of element in set
+TBDL: iterate(S): Returns a function that returns more than one value of S at each call, in some Arbitary Order.
+enumerate(S): returns list containing the elements of S in some arbitary Order (print)
+build(x1,x2,x3,x4,):  creates a set structure with values x1,x2,x3...xn
+
+Dynamic capabilities:
+
+create(): creates new, initially empty set structure
+    create_with_capacity(n): initially empty but capable of holding upto n elements.
+add(S,x): add elements x to S, if not present
+remove(S,x): removes the lement x from S, if it is present.
+capacity(S): returns maximum number of values that S can hold.
+
+Supported operations:
+
+union(S,T): returns Union of sets S and T
+intersections(S,T): returns intersection of set S, T
+difference(S,T): Returns difference of set S, T
+subset(S,T): test whether S is subset of T
+
+To be implemented by using Hash Table (after Linked List).
+
+
+_______________________________________________
+
+My Order of Implementation
+
+1) Create Linked List (using structures)
