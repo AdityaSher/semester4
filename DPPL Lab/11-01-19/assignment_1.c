@@ -55,9 +55,41 @@ int enumerate(NODE* head)
     {
         while(head->next!=NULL)
         {
-            printf("\nThe set is as below\n");
+            
+    printf("\nEnter number of elements you want to add to the set");
+    int number_of_elements;
+    scanf("%d",&number_of_elements);
+    int set_elements[number_of_elements];
+    
+    
+    for(int i = 0; i < number_of_elements; i++)
+    {
+        printf("\nEnter element number %d",i+1);
+        scanf("%d",&set_elements[i]);
+    }
+
+    build(number_of_elements,set_elements,head); //Note to self: no brackets needed while passing array to function.
+    
+
+}printf("\nThe set is as below\n");
             printf("{ ");
-            printf("%d, ",current->data);
+            
+    printf("\nEnter number of elements you want to add to the set");
+    int number_of_elements;
+    scanf("%d",&number_of_elements);
+    int set_elements[number_of_elements];
+    
+    
+    for(int i = 0; i < number_of_elements; i++)
+    {
+        printf("\nEnter element number %d",i+1);
+        scanf("%d",&set_elements[i]);
+    }
+
+    build(number_of_elements,set_elements,head); //Note to self: no brackets needed while passing array to function.
+    
+
+}printf("%d, ",current->data);
             printf(" }");
         }    
     }
@@ -75,7 +107,23 @@ int add_element(NODE* head, int element)
     if(head->next==NULL)
     {
         current=head;
-        NODE* temp= (NODE*)malloc(sizeof(NODE));
+        NODE* temp= (
+    printf("\nEnter number of elements you want to add to the set");
+    int number_of_elements;
+    scanf("%d",&number_of_elements);
+    int set_elements[number_of_elements];
+    
+    
+    for(int i = 0; i < number_of_elements; i++)
+    {
+        printf("\nEnter element number %d",i+1);
+        scanf("%d",&set_elements[i]);
+    }
+
+    build(number_of_elements,set_elements,head); //Note to self: no brackets needed while passing array to function.
+    
+
+}NODE*)malloc(sizeof(NODE));
         temp->data=element;
         temp->next=NULL;
         current=head=temp;
