@@ -108,25 +108,26 @@ int add_element(NODE *head, int element)
             printf("\nEnter element number %d", i + 1);
             scanf("%d", &set_elements[i]);
     }
-
-    build(number_of_elements,set_elements,head); //Note to self: no brackets needed while passing array to function.
-    }
+   
+    
     NODE *temp=(NODE*)malloc(sizeof(NODE));
     temp->data = element;
     temp->next = NULL;
     current = head = temp;
-}
+    }
 
-else
-{
-    NODE *temp = (NODE *)malloc(sizeof(NODE));
-    temp->data = element;
-    temp->next = NULL;
-    current->next = temp;
-    current = temp;
-}
+    else
+    {
+        NODE *temp = (NODE *)malloc(sizeof(NODE));
+        temp->data = element;
+        temp->next = NULL;
+        current->next = temp;
+        current = temp;
+    }
 
 } //end of add element code
+
+build(number_of_elements, set_elements, head); //Note to self: no brackets needed while passing array to function.
 
 int print_set()
 {
