@@ -1,0 +1,13 @@
+for letter in 'Python': #First Example
+	if letter ==h:
+		break
+	print('Current letter:', Letter)
+print('Out of For')
+
+
+
+for letter in 'Django': #First Example
+	if letter ==D:
+		continue
+	print('Current letter:', Letter)
+
