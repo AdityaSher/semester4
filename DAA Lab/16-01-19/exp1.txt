@@ -1,0 +1,24 @@
+//Implementation of basic sorting techniques such as bubble sort, insertion sort, selection sort, discuss the behaviour of each sorting technique when 
+
+1. Elements are unsorted order
+2. Elements are already in sorted order
+
+
+create a table to showcase the output
+
+measure time in ms
+
+time=algorithm + output storing
+
+n		BS 	SS	IS	
+ 
+100000
+200000
+300000
+400000
+500000
+
+
+Use a shell script to run all 3 files: run.sh
+
+use chmod +x run.sh
