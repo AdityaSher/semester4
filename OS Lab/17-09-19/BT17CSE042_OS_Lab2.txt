@@ -1,0 +1,37 @@
+Prerequisite_1: Understand proc file system of linux
+
+Ref: https://www.tldp.org/LDP/Linux-Filesystem-Hierarchy/html/proc.html
+
+Proc file system is a pseudo file system.
+It contains run-time system information
+It is the control and information center for the kernel.
+
+
+few related commands: 
+
+lsmod = cat /proc/modules) (?)
+lspci = cat /proc/pci (?)
+
+Unique point: All files have a size zero except kcore,mtrr and self.
+
+ps -aux ?
+
+ls -ltr ?
+
+
+
+proc stat command:
+
+Ref: http://man7.org/linux/man-pages/man5/proc.5.html
+(Status information about the process ...)
+
+
+tree command
+
+cat /proc/$$/status ($$=bash)
+
+cd /proc/$$/cwd = find current working directory
+
+
+
+
