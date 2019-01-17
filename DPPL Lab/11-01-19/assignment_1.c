@@ -22,24 +22,47 @@ NODE *create_set()
     return head;
 }
 
-
-//Note to self: brackets needed in declaration of function which accepts the array.
- int build( int number_of_elements, int set_elements[], NODE *head)
+int is_element_of(NODE *head, int x)
 {
-    NODE *current = NULL;
-
-    current = head;
-
-    for (int i = 0; i < number_of_elements; i++)
+    NODE *travel;
+    travel = head;
+    int found = 0;
+    int end = 0;
+    while (found != 1 || travel->next != NULL)
     {
-        NODE *temp = (NODE *)malloc(sizeof(NODE));
-        temp->data = set_elements[i];
-        temp->next = NULL;
-        current->next = temp;
-        current = temp;
+        if (travel->data == x)
+        {
+            found = 1;
+        }
+        travel = travel->next;
     }
+    if (found == 1)
+    {
+        return 1;
+    }
+    return 0;
+}
 
-    printf("\n The set has been created, use enumerate utility to output the set");
+int is_empty(NODE *head)
+{
+    if (head == NULL)
+    {
+        return 1;
+    }
+    return 0;
+}
+
+int cardinality(NODE *head)
+{
+    int count;
+    NODE *travel;
+    travel = head;
+    while (travel->next != NULL)
+    {
+        count++;
+        travel = travel->next;
+    }
+    return count;
 }
 
 int enumerate(NODE *head)
@@ -86,9 +109,26 @@ int enumerate(NODE *head)
     }
     printf("%d, ", current->data);
     printf(" }");
-
 }
 
+//Note to self: brackets needed in declaration of function which accepts the array.
+ int build( int number_of_elements, int set_elements[], NODE *head)
+{
+    NODE *current = NULL;
+
+    current = head;
+
+    for (int i = 0; i < number_of_elements; i++)
+    {
+        NODE *temp = (NODE *)malloc(sizeof(NODE));
+        temp->data = set_elements[i];
+        temp->next = NULL;
+        current->next = temp;
+        current = temp;
+    }
+
+    printf("\n The set has been created, use enumerate utility to output the set");
+}
 
 int add_element(NODE *head, int element)
 {
@@ -103,17 +143,17 @@ int add_element(NODE *head, int element)
         scanf("%d",&number_of_elements);
         int set_elements[number_of_elements];
     
-    for(int i = 0; i < number_of_elements; i++)
-    {
+        for(int i = 0; i < number_of_elements; i++)
+        {
             printf("\nEnter element number %d", i + 1);
             scanf("%d", &set_elements[i]);
-    }
+        }
    
     
-    temp=(NODE*)malloc(sizeof(NODE));
-    temp->data = element;
-    temp->next = NULL;
-    current = head = temp;
+        temp=(NODE*)malloc(sizeof(NODE));
+        temp->data = element;
+        temp->next = NULL;
+        current = head = temp;
     }
 
     else
@@ -129,57 +169,38 @@ int add_element(NODE *head, int element)
 
 //void build(number_of_elements, set_elements, head); //Note to self: no brackets needed while passing array to function.
 
+NODE* create()
+{
+    NODE *head = NULL;
+    head->next = NULL;
+    return head;
+}
+
+NODE* create_with_capacity(int n)
+{
+    NODE *head=NULL;
+    NODE* current=NULL;
+    head->next = NULL;
+    current=head;
+    for(int i=0;i<n;i++)
+    {
+        NODE* temp=(NODE*)malloc(sizeof(NODE));
+        current->next=temp;
+        temp->data=0;
+        current=temp;
+    }
+    
+    return head;
+
+}
+
 int print_set()
 {
 
 }
 
-int is_element_of(NODE *head,int x)
-{
-    NODE* travel;
-    travel=head;
-    int found=0;
-    int end=0;
-    while(found!=1 || travel->next!=NULL)
-    {
-        if(travel->data == x)
-        {
-            found=1;
-        }
-        travel=travel->next;
 
-    }
-    if(found==1)
-    {
-        return 1;
-    }
-    return 0;
-}
-
-int is_empty(NODE *head)
-{
-    if(head==NULL)
-    {
-        return 1;
-    }
-    return 0;
-}
-
-int size(NODE *head)
-{   
-    int count;
-    NODE* travel;
-    travel=head;
-    while(travel->next!=NULL)
-    {
-        count++;
-        travel=travel->next;
-
-    }
-    return count;
-}
-
-    int main()
+int main()
 {
     NODE *head = create_set();
 
@@ -195,4 +216,5 @@ int size(NODE *head)
     }
 
     build(number_of_elements, set_elements, head); //Note to self: no brackets needed while passing array to function.
+    enumerate(head);
 }
