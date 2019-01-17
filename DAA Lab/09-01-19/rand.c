@@ -41,7 +41,9 @@ int main()
  else{
    printf("file is now open\n");
    srand(time(0));
-   n = random()%1000;
+   printf("\nEnter number of numbers you want: ");
+   scanf("%d",&n);
+   //n = random()%1000;
    srand(time(0));
    for(c=0;c<n;c++)
  {

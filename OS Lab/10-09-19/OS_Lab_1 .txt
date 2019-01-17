@@ -1,19 +1,10 @@
-//Q: Study basic file structure of Linux/ Unix system.
+Aditya Sher
+BT17CSE042
 
-Commands:
+Q1
 
-see files in working directory: ls
+/Q: Study basic file structure of Linux/ Unix system.
 
-check which directory I am working in: 
-
-user@user-HP-ProDesk-400-G4-SFF:~/Aditya Sher/OS Lab/10-09-19 (copy) = part after ~ indicates the directory I am working in
-
-
-we can see permissions associated with these files uinsg: chmod
-
-
-
-****************************************************************
 Unix file system is used to organize and store large amounts of information in a way that makes it easy to manage.
 
 Unix interacts with the data and hardware! in two formats only, either a file or a process.
@@ -107,7 +98,35 @@ Pipes
 Sockets
 Symbolic Links
  
- 
- 
- 
+
+    ls=> used to view directory structure
+	cd=> used to navigate /enter directory (special case: cd .. goes to parent directory)
+	mkdir => create new directory
+	rmdir => remove directory
+	touch "filename.extension" => create new file
+	
+
+Q2	
+
+sed -e ''$2'd' $1
+
+Q3
+
+for i in ./*
+	do
+		file=$(echo $i | tr '[:upper:] [:lower:]' '[:lower:] [:upper:]')
+		mv $i $file
+done
+
+Q4
+
+file=$1
+if [ -e ${file} ]
+then
+    cat "${$1}" >> "${$2}"
+else
+    echo "File does not exist"
+fi
+
+
 
