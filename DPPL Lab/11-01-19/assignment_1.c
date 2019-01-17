@@ -248,12 +248,15 @@ int capacity(NODE *head)
     NODE *travel;
     travel = head;
     while (travel->next != NULL)
-    {     
-        count++;   
-        travel = travel->next;
+    {
+        count++;
+    
+    travel = travel->next;
     }
+
     return count;
 }
+
 
 NODE* copy(NODE* old);//copy function must be before find_union
 
@@ -355,7 +358,7 @@ NODE *find_intersection(NODE *S, NODE *T)
 
 NODE *find_difference(NODE *S, NODE *T)
 {
-    NODE *difference_set;
+    NODE *difference_set=NULL;
     NODE *current;
     NODE *first=S;
     NODE *second=T;
@@ -379,9 +382,32 @@ NODE *find_difference(NODE *S, NODE *T)
     return difference_set;
 }
 
-int *is_subset(NODE *S, NODE *T)
+int is_subset(NODE *S, NODE *T) //returns 1 if S is subset of T
 {
-    
+    NODE *current=NULL;
+
+    int s_size = cardinality(S);
+    int t_size = cardinality(T);
+
+    if(s_size>t_size)
+    {
+        printf("Set S is larger than T, hence it cannot be subset of T");
+    }
+    else
+    {
+        NODE *first = S;
+        NODE *second = T;
+
+        while (first->next != NULL)
+        {
+            int found = is_element_of(second, first->data);
+            if (found == 1)
+            {
+                return 0;
+            }
+        }
+        return 1;
+    }
 }
 
 NODE* copy(NODE* old)
