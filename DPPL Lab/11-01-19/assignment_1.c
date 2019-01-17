@@ -156,7 +156,7 @@ int is_element_of(NODE *head,int x)
     return 0;
 }
 
-int is_empty(NODE *head, int x)
+int is_empty(NODE *head)
 {
     if(head==NULL)
     {
@@ -165,7 +165,19 @@ int is_empty(NODE *head, int x)
     return 0;
 }
 
+int size(NODE *head)
+{   
+    int count;
+    NODE* travel;
+    travel=head;
+    while(travel->next!=NULL)
+    {
+        count++;
+        travel=travel->next;
 
+    }
+    return count;
+}
 
     int main()
 {
