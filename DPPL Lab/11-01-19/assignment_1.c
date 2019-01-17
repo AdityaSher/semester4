@@ -24,7 +24,7 @@ NODE *create_set()
 
 
 //Note to self: brackets needed in declaration of function which accepts the array.
-int build(int number_of_elements, int set_elements[], NODE *head)
+ int build( int number_of_elements, int set_elements[], NODE *head)
 {
     NODE *current = NULL;
 
@@ -110,7 +110,7 @@ int add_element(NODE *head, int element)
     }
    
     
-    NODE *temp=(NODE*)malloc(sizeof(NODE));
+    temp=(NODE*)malloc(sizeof(NODE));
     temp->data = element;
     temp->next = NULL;
     current = head = temp;
@@ -127,13 +127,47 @@ int add_element(NODE *head, int element)
 
 } //end of add element code
 
-build(number_of_elements, set_elements, head); //Note to self: no brackets needed while passing array to function.
+//void build(number_of_elements, set_elements, head); //Note to self: no brackets needed while passing array to function.
 
 int print_set()
 {
+
 }
 
-int main()
+int is_element_of(NODE *head,int x)
+{
+    NODE* travel;
+    travel=head;
+    int found=0;
+    int end=0;
+    while(found!=1 || travel->next!=NULL)
+    {
+        if(travel->data == x)
+        {
+            found=1;
+        }
+        travel=travel->next;
+
+    }
+    if(found==1)
+    {
+        return 1;
+    }
+    return 0;
+}
+
+int is_empty(NODE *head, int x)
+{
+    if(head==NULL)
+    {
+        return 1;
+    }
+    return 0;
+}
+
+
+
+    int main()
 {
     NODE *head = create_set();
 
