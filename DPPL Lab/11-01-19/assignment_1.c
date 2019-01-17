@@ -52,20 +52,24 @@ int is_empty(NODE *head)
     return 0;
 }
 
-int cardinality(NODE *head)
+int cardinality(NODE *head) //node->data zero indicates no value
 {
     int count;
     NODE *travel;
     travel = head;
     while (travel->next != NULL)
     {
-        count++;
+        if(travel->data!=0)
+        {
+            count++;
+        }
+        
         travel = travel->next;
     }
     return count;
 }
 
-int enumerate(NODE *head)
+int enumerate(NODE *head) //incorrect code must be fixed
 {
     NODE *current;
     current = head;
@@ -88,8 +92,6 @@ int enumerate(NODE *head)
                 printf("\nEnter element number %d", i + 1);
                 scanf("%d", &set_elements[i]);
             }
-
-            build(number_of_elements, set_elements, head); //Note to self: no brackets needed while passing array to function.
         }
         printf("\nThe set is as below\n");
         printf("{ ");
@@ -105,7 +107,6 @@ int enumerate(NODE *head)
             scanf("%d", &set_elements[i]);
         }
 
-        build(number_of_elements, set_elements, head); //Note to self: no brackets needed while passing array to function.
     }
     printf("%d, ", current->data);
     printf(" }");
@@ -194,11 +195,136 @@ NODE* create_with_capacity(int n)
 
 }
 
-int print_set()
+int add(NODE* head, int x)
 {
+    int is_present=is_element_of(head,x);
+    if(is_present==1)
+    {
+        printf("The element %d is already present in the set",x);
+    }
+    else
+    {   
+        NODE* current=head;
+        while(current->next!=NULL)
+        {
+            current=current->next;
+        }
+        NODE *temp = (NODE *)malloc(sizeof(NODE));
+        current->next=temp;
+        temp->data=x;
+        temp->next=NULL;
+    }
+}
+
+int remove_element(NODE *head, int x)
+{
+    int is_present = is_element_of(head, x);
+    if (is_present == 0)
+    {
+        printf("/nThe element %d is not present in the set", x);
+    }
+    else if(is_present==1)
+    {
+        NODE *current = head;
+        NODE* previous= NULL;
+        NODE* temp= NULL;
+        while (current->data!=x)
+        {
+            previous=current;
+            current = current->next;
+        }
+
+        previous=previous->next->next;
+        free(current);
+    }
+}
+
+
+int capacity(NODE *head)
+{
+    int count;
+    NODE *travel;
+    travel = head;
+    while (travel->next != NULL)
+    {     
+        count++;   
+        travel = travel->next;
+    }
+    return count;
+}
+
+NODE* copy(NODE* old);//copy function must be before find_union
+
+NODE* find_union(NODE *S, NODE *T) //function name union resulted in error, why?
+{
+    NODE *union_set;
+    //NODE *scurrent; not needed
+    //NODE *tcurrent; not needed
+    NODE* current;
+    NODE *first;
+    NODE *second;
+    NODE *end_union;
+    int s_size = cardinality(S);
+    int t_size=cardinality(T);
+
+    if(s_size<=t_size)
+    {
+        first= S;
+        //second = T; not needed
+        current=T;
+        
+    }
+    
+    else
+    {
+        first= T;
+        //second = S; not needed
+        current=S;
+    }
+
+    union_set=copy(first); //add first set to union
+
+    //finding end of union
+    end_union=union_set;
+    while(end_union!=NULL)
+    {
+        end_union=end_union->next;
+    }    
+
+    while(current->next!=NULL)
+    {
+        int found = is_element_of(union_set, current->data);
+        if(found==0)
+        {
+            NODE *temp = (NODE *)malloc(sizeof(NODE));
+            temp->data = current->data;
+            temp->next=NULL;
+            end_union=temp;
+        }
+
+        current=current->next;
+
+    }
 
 }
 
+NODE* copy(NODE* old)
+{
+    NODE *new=NULL;
+    NODE *current;
+    current=old;
+    NODE* copier=new;
+    while(current->next!=NULL)
+    {
+        NODE *temp = (NODE *)malloc(sizeof(NODE));
+        temp->data=current->data;
+        temp->next=NULL;
+        copier=temp;
+        current=current->next;
+    }
+    
+    return new;
+}
 
 int main()
 {
