@@ -1,3 +1,5 @@
+//remember to set head and temp as null once you complete the program
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -297,6 +299,7 @@ NODE* find_union(NODE *S, NODE *T) //function name union resulted in error, why?
         if(found==0)
         {
             NODE *temp = (NODE *)malloc(sizeof(NODE));
+            end_union->next=temp;
             temp->data = current->data;
             temp->next=NULL;
             end_union=temp;
@@ -306,6 +309,79 @@ NODE* find_union(NODE *S, NODE *T) //function name union resulted in error, why?
 
     }
 
+return union_set;
+}
+
+NODE *find_intersection(NODE *S, NODE *T) 
+{
+    NODE *intersection_set;
+    //NODE *scurrent; not needed
+    //NODE *tcurrent; not needed
+    NODE *current;
+    NODE *first;
+    NODE *second;
+    int s_size = cardinality(S);
+    int t_size = cardinality(T);
+
+    if (s_size <= t_size)
+    {
+        first = S;
+        second = T; 
+    }
+
+    else
+    {
+        first = T;
+        second = S; 
+    }
+
+    current=intersection_set;
+    while (first->next != NULL)
+    {
+        int found = is_element_of(second, first->data);
+        if (found == 1)
+        {
+            NODE *temp = (NODE *)malloc(sizeof(NODE));
+            current->next=temp;
+            temp->data = first->data;
+            temp->next = NULL;
+            current = temp;
+        }
+
+        first = first->next;
+    }
+    return intersection_set;
+}
+
+NODE *find_difference(NODE *S, NODE *T)
+{
+    NODE *difference_set;
+    NODE *current;
+    NODE *first=S;
+    NODE *second=T;
+
+    current = difference_set;
+
+    while (first->next != NULL)
+    {
+        int found = is_element_of(second, first->data);
+        if (found == 0)
+        {
+            NODE *temp = (NODE *)malloc(sizeof(NODE));
+            current->next = temp;
+            temp->data = first->data;
+            temp->next = NULL;
+            current = temp;
+        }
+
+        first = first->next;
+    }
+    return difference_set;
+}
+
+int *is_subset(NODE *S, NODE *T)
+{
+    
 }
 
 NODE* copy(NODE* old)
