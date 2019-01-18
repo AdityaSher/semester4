@@ -21,15 +21,15 @@ NODE* create_bst(NODE *root,int x)
 
         return root;
     }
-    else if(item>root->data)
+    else if(x>root->data)
     {
-        root=create_bst(root->right,x)
+        root=create_bst(root->right,x);
     }
-    else if(item<root->data)
+    else if(x<root->data)
     {
-        root=create_bst(root->left,x)
+        root=create_bst(root->left,x);
     }
-    else if(item=root->data)
+    else if(x=root->data)
     {
         printf("\n Duplicate item not allowed in bst");
     }
@@ -50,6 +50,63 @@ void inorder(NODE *root)
     }
 }
 
+void preorder(NODE *root)
+{
+    if(root!=NULL)
+    {
+        printf("%d",root->data);
+        preorder(root->left);
+        prerder(root->right);
+    }
+}
+
+void postorder(NODE *root)
+{
+    if(root!=NULL)
+    {
+        postorder(root->left);
+        postorder(root->right);
+        printf("%d ->",root->data);
+    }
+}
+
+int exactly_identical(NODE *T1, NODE *T2)
+{
+    NODE* t1;
+    NODE* t2;
+    if (t1==NULL && t2==NULL) 
+    {
+        return 1;
+    }
+    else if(t1!=NULL && t2!=NULL) 
+    {
+        return
+        (t1->data==t2->data && 
+        exactly_identical(t1->left,t2->left) && 
+        exactly_identical(t1->right,t2->right) );
+
+    }
+    return 0;   
+}
+
+int structurally_identical(NODE *T1, NODE *T2)
+{
+    NODE* t1;
+    NODE* t2;
+    if (t1==NULL && t2==NULL) 
+    {
+        return 1;
+    }
+    else if(t1!=NULL && t2==NULL || t1==NULL && t2!=NULL)
+    else 
+    {
+        structurally_identical(t1->left,t2->left);
+        structurally_identical(t1->right,t2->right);
+
+    }
+    return 0;   
+}
+
 
 void main()
 {
@@ -67,8 +124,10 @@ void main()
         scanf("%d",&x);
         root=create_bst(root,x);
         printf("Press 1 to add new node, press 0 to stop ");
-        scanf("%d",&x);
-        
+        scanf("%d",&x);    
     }
     
+    inorder(root);
+    preorder(root);
+    postorder(root);
 }
