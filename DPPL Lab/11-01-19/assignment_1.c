@@ -71,9 +71,9 @@ int cardinality(NODE *head) //node->data zero indicates no value
     return count;
 }
 
-int enumerate(NODE *head) //incorrect code must be fixed
+void enumerate(NODE *head) //incorrect code must be fixed
 {
-    printf("Entered enumerate loop");
+    
     NODE *current;
     current = head;
     if (head == NULL)
@@ -118,48 +118,39 @@ int enumerate(NODE *head) //incorrect code must be fixed
         temp->data = set_elements[i];
         temp->next = NULL;
         current = temp;
-        printf("\n Loop %d",&i);
+        
     }
     printf("\n The set has been created, use enumerate utility to output the set");
 
     return head;
 }
 
-int add_element(NODE *head, int element)
+NODE* add_element(NODE *head, int element)
 {
     NODE *current = NULL;
-
-    if (head->next == NULL)
+    current = head;
+    if(head==NULL)
     {
-        current = head;
         NODE *temp = (NODE *)malloc(sizeof(NODE));
-        printf("\nEnter number of elements you want to add to the set");
-        int number_of_elements;
-        scanf("%d",&number_of_elements);
-        int set_elements[number_of_elements];
-    
-        for(int i = 0; i < number_of_elements; i++)
-        {
-            printf("\nEnter element number %d", i + 1);
-            scanf("%d", &set_elements[i]);
-        }
-   
-    
-        temp=(NODE*)malloc(sizeof(NODE));
-        temp->data = element;
-        temp->next = NULL;
-        current = head = temp;
+        temp->data=element;
+        temp->next=NULL;
+        head=temp;
+                
     }
-
     else
     {
+        while (current->next != NULL)
+        {
+            current = current->next;
+        }
+        
         NODE *temp = (NODE *)malloc(sizeof(NODE));
         temp->data = element;
         temp->next = NULL;
-        current->next = temp;
+        current->next=temp;
         current = temp;
     }
-
+return head;
 } //end of add element code
 
 
@@ -421,117 +412,179 @@ NODE* copy(NODE* old)
 
 int main()
 {
+    NODE *new_set,*set_n,*S,*T;
+
+    printf("\nBefore we start we must create two sample sets");
+    printf("\nNote: The set used in Options 1-10 Will be S");
+    printf("\nNote: The sets used in Options 10,11,12,13 Will be S and T");
+
+    //Create set S
+    printf("\nEnter number of elements you want to add to the set S: ");
+    int S_n;
+    scanf("%d", &S_n);
+
+    int S_elements[S_n];
+
+    for (int i = 0; i < S_n; i++)
+    {
+        printf("\nEnter element number %d: ", i + 1);
+        scanf("%d", &S_elements[i]);
+    }
+    build(S_n, S_elements, S);
+    //End of create set S
+
+    //Create set T
+    printf("\nEnter number of elements you want to add to the set T: ");
+    int T_n;
+    scanf("%d", &T_n);
+
+    int T_elements[T_n];
+
+    for (int i = 0; i < T_n; i++)
+    {
+        printf("\nEnter element number %d: ", i + 1);
+        scanf("%d", &T_elements[i]);
+    }
+    build(T_n, T_elements, T);
+    //End of create set T
+
     //**Menu**
 
     printf("\nChoose your operation");
-    int mode;
-    printf("Enter\n 1. Basic Operations like Build Set, Print Set,Check size of the set and find element");
-    printf("2. Dynamic opeartions like Add element to set, remove element from set, find total holding capacity");
-    printf("3. Set operations like Union Intersection Difference and Subset");
-    scanf("%d", &mode);
-
     int choice;
 
-    switch (mode)
+    printf("Enter\n 1.Initialize set \n2. Add elements to set \n3. Enumerate set \n4. Find whether x is element of set \n5. Find cardinality of set \n6. Create empty set with capacity n \n7. Add element x to set  \n8. Remove element x from set if present \n9. find capacity of set \n10. Find Union of two Sets \n11. Find Intersection of Two Sets\n12. Find difference of two sets \n13.Find Subset of two sets");
+    scanf("%d",&choice);
+
+    
+    switch (choice)
     {
-    case 1:
-
-        printf("Enter\n 1. To create an empty set \n2. To add elements to the set. \n 3. Find Cardinality of the Set");
-        scanf("%d", &choice);
-
-        switch (choice)
-        {
         case 1:
-
-            NODE *new_set;
-            new_set = create_set();
-            break;
-
-        case 2:
-
-            printf("\nEnter number of elements you want to add to the set : ");
-            int number_of_elements;
-            scanf("%d", &number_of_elements);
-            int set_elements[number_of_elements];
-
-            for (int i = 0; i < number_of_elements; i++)
-            {
-                printf("\nEnter element number %d of set S:", i + 1);
-                scanf("%d", &set_elements[i]);
-            }
-
-            new_set = build(number_of_elements, set_elements, new_set);
-
-            break;
-
-        case 3:
-            int size = cardinality(new_set);
-            printf("\nSize/Cardinality of the set is %d", size);
-
-            break;
-
-        default:
-            break;
-
-            break;
-
-        case 2:
-            printf("Enter\n 1. To add an element to the set \n2. To remove entered element from the set.[If it exists] \n 3. Find holding Capacity of the Set");
-            scanf("%d", &choice);
-
-            switch (choice)
-            {
-            case 1:
-
-                break;
-
-            case 2:
-
-                break;
-
-            case 3:
-
-                break;
-
-            case 4:
-
-                break;
-
-            default:
-                break;
-            }
-
-            break;
-
-        case 3:
-            printf("Enter\n 1. Find union of 2 sets \n2. Find intersection of 2 sets \n3. Find difference of two sets \n4. Find Whether first set is subset of second");
-            scanf("%d", &choice);
-
-            switch (choice)
-            {
-            case 1:
-
-                break;
-
-            case 2:
-
-                break;
-
-            case 3:
-
-                break;
-
-            case 4:
-
-                break;
-
-            default:
-                break;
-            }
-
-
-        default:
+        {
+            /* code */
+            NODE* S=create_set();
             break;
         }
+
+        case 2:
+        {
+            build(S_n, S_elements, new_set);
+            break;
+        }
+
+        case 3:
+        {
+            enumerate(new_set);
+            break;
+        }
+
+        case 4:
+        {
+            int x;
+            printf("/nEnter element x to find whether its a part of the set: ");
+            scanf("%d",&x);
+            is_element_of(new_set,x);
+            break;
+        }
+
+        case 5:
+        {
+            cardinality(new_set);
+            break;
+        }
+
+        case 6:
+        {
+            int n;
+            printf("\nWe will create an empty set with capacity n, enter n: ");
+            set_n=create_with_capacity(n);
+            break;
+        }
+
+        case 7:
+        {
+            printf("We will add element x to initial set, Enter x: ");
+            int x;
+            scanf("%d",&x);
+            new_set=add_element(new_set,x);
+            break;
+        }
+
+        case 8:
+        {
+            printf("Enter x we will remove it from the set if its present: ");
+            int x;
+            scanf("%d", &x);
+            remove_element(new_set,x);
+            break;
+        }
+
+        case 9:
+        {
+            printf("Find capacity of set, you have two options\n 1.Find capacity of set that we created in option 1 and added values in option 2\nOR\nFind capacity of set we created without elemens in option 6\nEnter your choice: ");
+            int option;
+            scanf("%d",&option);
+
+            
+            if (option==1) {
+                int cap=capacity(new_set);
+                printf("\nCapacity of set is %d ",cap);
+            }
+            else if(option==2) {
+                int cap=capacity(set_n);
+                printf("\nCapacity of set is %d ", cap);
+            }
+            else {
+                printf("Option you entered was incorrect");
+            }
+            
+
+            break;
+        }
+
+        case 10:
+        {
+            NODE *union_set=find_union(S,T);
+            printf("/nBelow is Uion of Sets S and T");
+            enumerate(union_set);
+            break;
+        }
+
+        case 11:
+        {
+            NODE *intersection_set=find_intersection(S, T);
+            printf("/nBelow is Intersection of Sets S and T");
+            enumerate(intersection_set);
+            break;
+        }
+
+        case 12:
+        {
+
+            NODE *difference_set=find_difference(S, T);
+            printf("/nBelow is Difference of Sets S and T");
+            enumerate(difference_set);
+            break;
+        }
+        case 13:
+        {
+
+            int subset = is_subset(S, T);
+            if (subset == 1)
+            {
+                printf("\nS is a subset of T");
+            }
+            else if (subset == 0)
+            {
+                printf("\nS is NOT a subset of T");
+            }
+            break;
+        }
+
+        default:
+            printf("Please choose correct option");
+            break;
     }
+
+
 }
