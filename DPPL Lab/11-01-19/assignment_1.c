@@ -73,64 +73,56 @@ int cardinality(NODE *head) //node->data zero indicates no value
 
 int enumerate(NODE *head) //incorrect code must be fixed
 {
+    printf("Entered enumerate loop");
     NODE *current;
     current = head;
-    if (head->next == NULL)
+    if (head == NULL)
     {
         printf("\nThe set is empty please add some elements to it to see the output.");
     }
     else
     {
-        while (head->next != NULL)
-        {
-
-            printf("\nEnter number of elements you want to add to the set");
-            int number_of_elements;
-            scanf("%d", &number_of_elements);
-            int set_elements[number_of_elements];
-
-            for (int i = 0; i < number_of_elements; i++)
-            {
-                printf("\nEnter element number %d", i + 1);
-                scanf("%d", &set_elements[i]);
-            }
-        }
+        
         printf("\nThe set is as below\n");
         printf("{ ");
-
-        printf("\nEnter number of elements you want to add to the set");
-        int number_of_elements;
-        scanf("%d", &number_of_elements);
-        int set_elements[number_of_elements];
-
-        for (int i = 0; i < number_of_elements; i++)
+        while(current->next!=NULL)
         {
-            printf("\nEnter element number %d", i + 1);
-            scanf("%d", &set_elements[i]);
+            printf("%d", current->data);
+            printf(", ");
+            current=current->next;
+            
         }
-
-    }
-    printf("%d, ", current->data);
-    printf(" }");
+        printf("%d ", current->data);
+        printf(" }");
+        }
+    
 }
 
 //Note to self: brackets needed in declaration of function which accepts the array.
- int build( int number_of_elements, int set_elements[], NODE *head)
+ NODE *build( int number_of_elements, int set_elements[], NODE *head)
 {
     NODE *current = NULL;
 
-    current = head;
-
-    for (int i = 0; i < number_of_elements; i++)
+    if(head==NULL)
     {
         NODE *temp = (NODE *)malloc(sizeof(NODE));
+        temp->data = set_elements[0];
+        head=temp;
+    }
+    current = head;
+    for (int i = 1; i < number_of_elements; i++)
+    { 
+        NODE* temp = (NODE*)malloc(sizeof(NODE));
+        
+        current->next = temp;     
         temp->data = set_elements[i];
         temp->next = NULL;
-        current->next = temp;
         current = temp;
+        printf("\n Loop %d",&i);
     }
-
     printf("\n The set has been created, use enumerate utility to output the set");
+
+    return head;
 }
 
 int add_element(NODE *head, int element)
@@ -170,7 +162,6 @@ int add_element(NODE *head, int element)
 
 } //end of add element code
 
-//void build(number_of_elements, set_elements, head); //Note to self: no brackets needed while passing array to function.
 
 NODE* create()
 {
@@ -430,19 +421,117 @@ NODE* copy(NODE* old)
 
 int main()
 {
-    NODE *head = create_set();
+    //**Menu**
 
-    printf("\nEnter number of elements you want to add to the set");
-    int number_of_elements;
-    scanf("%d", &number_of_elements);
-    int set_elements[number_of_elements];
+    printf("\nChoose your operation");
+    int mode;
+    printf("Enter\n 1. Basic Operations like Build Set, Print Set,Check size of the set and find element");
+    printf("2. Dynamic opeartions like Add element to set, remove element from set, find total holding capacity");
+    printf("3. Set operations like Union Intersection Difference and Subset");
+    scanf("%d", &mode);
 
-    for (int i = 0; i < number_of_elements; i++)
+    int choice;
+
+    switch (mode)
     {
-        printf("\nEnter element number %d", i + 1);
-        scanf("%d", &set_elements[i]);
-    }
+    case 1:
 
-    build(number_of_elements, set_elements, head); //Note to self: no brackets needed while passing array to function.
-    enumerate(head);
+        printf("Enter\n 1. To create an empty set \n2. To add elements to the set. \n 3. Find Cardinality of the Set");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+        case 1:
+
+            NODE *new_set;
+            new_set = create_set();
+            break;
+
+        case 2:
+
+            printf("\nEnter number of elements you want to add to the set : ");
+            int number_of_elements;
+            scanf("%d", &number_of_elements);
+            int set_elements[number_of_elements];
+
+            for (int i = 0; i < number_of_elements; i++)
+            {
+                printf("\nEnter element number %d of set S:", i + 1);
+                scanf("%d", &set_elements[i]);
+            }
+
+            new_set = build(number_of_elements, set_elements, new_set);
+
+            break;
+
+        case 3:
+            int size = cardinality(new_set);
+            printf("\nSize/Cardinality of the set is %d", size);
+
+            break;
+
+        default:
+            break;
+
+            break;
+
+        case 2:
+            printf("Enter\n 1. To add an element to the set \n2. To remove entered element from the set.[If it exists] \n 3. Find holding Capacity of the Set");
+            scanf("%d", &choice);
+
+            switch (choice)
+            {
+            case 1:
+
+                break;
+
+            case 2:
+
+                break;
+
+            case 3:
+
+                break;
+
+            case 4:
+
+                break;
+
+            default:
+                break;
+            }
+
+            break;
+
+        case 3:
+            printf("Enter\n 1. Find union of 2 sets \n2. Find intersection of 2 sets \n3. Find difference of two sets \n4. Find Whether first set is subset of second");
+            scanf("%d", &choice);
+
+            switch (choice)
+            {
+            case 1:
+
+                break;
+
+            case 2:
+
+                break;
+
+            case 3:
+
+                break;
+
+            case 4:
+
+                break;
+
+            default:
+                break;
+            }
+
+
+        default:
+            break;
+        }
+    }
 }
