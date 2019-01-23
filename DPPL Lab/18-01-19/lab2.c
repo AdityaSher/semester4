@@ -98,7 +98,6 @@ int structurally_identical(NODE *T1, NODE *T2)
         return 1;
     }
     else if(t1!=NULL && t2==NULL || t1==NULL && t2!=NULL)
-    else 
     {
         structurally_identical(t1->left,t2->left);
         structurally_identical(t1->right,t2->right);

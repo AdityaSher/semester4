@@ -43,7 +43,7 @@ int main()
    srand(time(0));
    printf("\nEnter number of numbers you want: ");
    scanf("%d",&n);
-   //n = random()%1000;
+   //n = random()%1000000;
    srand(time(0));
    for(c=0;c<n;c++)
  {
