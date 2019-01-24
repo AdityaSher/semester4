@@ -1,5 +1,3 @@
-//remember to set head and temp as null once you complete the program
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -15,6 +13,8 @@ struct node
 
 typedef struct node NODE;
 
+
+//create_set function returns head of set after initialization
 NODE *create_set()
 {
     NODE *head = NULL;
@@ -24,6 +24,8 @@ NODE *create_set()
     return head;
 }
 
+
+//is_element_of verifies whether entered element is a part of the set
 int is_element_of(NODE *head, int x)
 {
     NODE *travel;
@@ -40,6 +42,8 @@ int is_element_of(NODE *head, int x)
     return 0;
 }
 
+
+//is_empty returns 1 if set is empty
 int is_empty(NODE *head)
 {
     if (head == NULL)
@@ -49,7 +53,9 @@ int is_empty(NODE *head)
     return 0;
 }
 
-int cardinality(NODE *head) //node->data zero indicates no value
+
+//cardinality returns size of set
+int cardinality(NODE *head) 
 {
     int count=0;
     NODE *travel;
@@ -66,9 +72,9 @@ int cardinality(NODE *head) //node->data zero indicates no value
     return count;
 }
 
-void enumerate(NODE *head) //incorrect code must be fixed
+//Enumerate: displays the set
+void enumerate(NODE *head)
 {
-    
     NODE *current;
     current = head;
     if (head == NULL)
@@ -93,9 +99,9 @@ void enumerate(NODE *head) //incorrect code must be fixed
     
 }
 
+//add_element verifies whether entered element is already a part of the set, if not its added to the set.
 NODE *add_element(NODE *head, int element);
 
-    //Note to self: brackets needed in declaration of function which accepts the array.
 NODE *build(int number_of_elements, int set_elements[])
 {
     NODE *current = NULL;
@@ -104,7 +110,7 @@ NODE *build(int number_of_elements, int set_elements[])
     {
         current=add_element(current,set_elements[i]);
     }
-    printf("\n The set has been created, use enumerate utility to output the set");
+    printf("\nThe set has been created, use enumerate utility to output the set");
 
     return current;
 }
@@ -141,16 +147,8 @@ NODE* add_element(NODE *head, int element)
 return head;
 } //end of add element code
 
-
-NODE* create()
-{
-    NODE *head = NULL;
-    head->next = NULL;
-    return head;
-}
-
 void remove_element(NODE *head, int x)
-{   /*
+{   
     int is_present = is_element_of(head, x);
     if (is_present == 0)
     {
@@ -170,11 +168,12 @@ void remove_element(NODE *head, int x)
         previous=previous->next->next;
         free(current);
     }
-    */
+    
 }
 
 NODE* copy(NODE* old);//copy function must be before find_union
 
+//Union returns set which is union of two input sets
 NODE* find_union(NODE *S, NODE *T) //function name union resulted in error, why?
 {
     NODE* temp=S;
@@ -187,7 +186,10 @@ NODE* find_union(NODE *S, NODE *T) //function name union resulted in error, why?
         newnode->next = NULL;
 
         if(head==NULL)
+        {
             head=newnode;
+        }
+            
         else{
             newnode->next=head;
             head=newnode;
@@ -206,17 +208,17 @@ return head;
 }
 
 
-
+//find_difference returns set which is difference of two entered sets
 NODE* find_difference(NODE *S, NODE *T)
 {
-    //NODE *difference_set=NULL;
     NODE *current;
     NODE *first=S;
 
-    current =NULL;
+    current=NULL;
 
     while (first!= NULL)
     {
+        //for each element of S find whether it exists in T 
         if (!is_element_of(T, first->data))
         {
             NODE *temp = (NODE *)malloc(sizeof(NODE));
@@ -400,7 +402,7 @@ int main()
     NODE *difference_set = find_difference(S, T);
     printf("\nBelow is Difference of Sets S and T");
     enumerate(difference_set);
-/*
+
     int subset = is_subset(S, T);
     if (subset == 1)
     {
@@ -410,7 +412,7 @@ int main()
     {
         printf("\nS is NOT a subset of T");
     }
-*/       
+      
 }
     
 
