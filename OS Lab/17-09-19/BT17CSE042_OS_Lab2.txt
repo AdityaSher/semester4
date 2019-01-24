@@ -565,81 +565,14 @@ systemd─┬─ModemManager─┬─{ModemManager}
         │         │                 ├─{gnome-shell-cal}
         │         │                 └─{gnome-shell-cal}
         │         ├─gnome-terminal-─┬─bash───pstree
-        │         │                 ├─{gnome-terminal-}
-        │         │                 ├─{gnome-terminal-}
-        │         │                 └─{gnome-terminal-}
-        │         ├─goa-daemon─┬─{goa-daemon}
-        │         │            ├─{goa-daemon}
-        │         │            └─{goa-daemon}
-        │         ├─goa-identity-se─┬─{goa-identity-se}
-        │         │                 ├─{goa-identity-se}
-        │         │                 └─{goa-identity-se}
-        │         ├─gvfs-afc-volume─┬─{gvfs-afc-volume}
-        │         │                 ├─{gvfs-afc-volume}
-        │         │                 └─{gvfs-afc-volume}
-        │         ├─gvfs-goa-volume─┬─{gvfs-goa-volume}
-        │         │                 └─{gvfs-goa-volume}
-        │         ├─gvfs-gphoto2-vo─┬─{gvfs-gphoto2-vo}
-        │         │                 └─{gvfs-gphoto2-vo}
-        │         ├─gvfs-mtp-volume─┬─{gvfs-mtp-volume}
-        │         │                 └─{gvfs-mtp-volume}
-        │         ├─gvfs-udisks2-vo─┬─{gvfs-udisks2-vo}
-        │         │                 └─{gvfs-udisks2-vo}
-        │         ├─gvfsd─┬─gvfsd-dnssd─┬─{gvfsd-dnssd}
-        │         │       │             └─{gvfsd-dnssd}
-        │         │       ├─gvfsd-network─┬─{gvfsd-network}
-        │         │       │               ├─{gvfsd-network}
-        │         │       │               └─{gvfsd-network}
-        │         │       ├─gvfsd-trash─┬─{gvfsd-trash}
-        │         │       │             └─{gvfsd-trash}
-        │         │       ├─{gvfsd}
-        │         │       └─{gvfsd}
-        │         ├─gvfsd-fuse─┬─{gvfsd-fuse}
-        │         │            ├─{gvfsd-fuse}
-        │         │            ├─{gvfsd-fuse}
-        │         │            ├─{gvfsd-fuse}
-        │         │            └─{gvfsd-fuse}
-        │         ├─gvfsd-metadata─┬─{gvfsd-metadata}
-        │         │                └─{gvfsd-metadata}
-        │         ├─ibus-portal─┬─{ibus-portal}
-        │         │             └─{ibus-portal}
-        │         ├─nautilus─┬─{nautilus}
-        │         │          ├─{nautilus}
-        │         │          ├─{nautilus}
-        │         │          ├─{nautilus}
-        │         │          ├─{nautilus}
-        │         │          ├─{nautilus}
-        │         │          ├─{nautilus}
-        │         │          ├─{nautilus}
-        │         │          ├─{nautilus}
-        │         │          ├─{nautilus}
-        │         │          └─{nautilus}
-        │         ├─snap─┬─{snap}
-        │         │      ├─{snap}
-        │         │      ├─{snap}
-        │         │      ├─{snap}
-        │         │      ├─{snap}
-        │         │      ├─{snap}
-        │         │      └─{snap}
-        │         ├─zeitgeist-daemo─┬─{zeitgeist-daemo}
-        │         │                 └─{zeitgeist-daemo}
-        │         └─zeitgeist-fts─┬─{zeitgeist-fts}
-        │                         └─{zeitgeist-fts}
-        ├─systemd-journal
-        ├─systemd-logind
-        ├─systemd-resolve
-        ├─systemd-timesyn───{systemd-timesyn}
-        ├─systemd-udevd
-        ├─thermald───{thermald}
-        ├─udisksd─┬─{udisksd}
-        │         ├─{udisksd}
-        │         ├─{udisksd}
-        │         └─{udisksd}
-        ├─upowerd─┬─{upowerd}
-        │         └─{upowerd}
-        ├─whoopsie─┬─{whoopsie}
-        │          └─{whoopsie}
-        └─wpa_supplicant
+       
+     
+     
+  
+4. Consider the following commands that you can type in the bash shell: cd, ls, history, ps. Which
+of these are system programs that are simply executed by the bash shell, and which are
+implemented by the bash code itself?
+
 
 
 
