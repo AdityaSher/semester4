@@ -109,6 +109,7 @@ void enumerate(NODE *head) //incorrect code must be fixed
         temp->data = set_elements[0];
         head=temp;
     }
+
     current = head;
     for (int i = 1; i < number_of_elements; i++)
     { 
@@ -131,11 +132,14 @@ NODE* add_element(NODE *head, int element)
     current = head;
     if(head==NULL)
     {
+        printf("test0");
         NODE *temp = (NODE *)malloc(sizeof(NODE));
+        printf("test");
         temp->data=element;
+        printf("test1");
         temp->next=NULL;
-        head=temp;
-                
+        printf("test2");
+        head=temp;            
     }
     else
     {
@@ -449,26 +453,46 @@ int main()
     //End of create set T
 
     //**Menu**
-
-    printf("\nChoose your operation");
-    int choice;
-
-    printf("Enter\n 1.Initialize set \n2. Add elements to set \n3. Enumerate set \n4. Find whether x is element of set \n5. Find cardinality of set \n6. Create empty set with capacity n \n7. Add element x to set  \n8. Remove element x from set if present \n9. find capacity of set \n10. Find Union of two Sets \n11. Find Intersection of Two Sets\n12. Find difference of two sets \n13.Find Subset of two sets");
-    scanf("%d",&choice);
-
-    
-    switch (choice)
+    int choice=1;
+    while(choice!=0)
     {
+        printf("\nChoose your operation");
+        int choice;
+
+        printf("Enter\n 0. To Exit 1.Initialize set \n2. Add elements to set \n3. Enumerate set \n4. Find whether x is element of set \n5. Find cardinality of set \n6. Create empty set with capacity n \n7. Add element x to set  \n8. Remove element x from set if present \n9. find capacity of set \n10. Find Union of two Sets \n11. Find Intersection of Two Sets\n12. Find difference of two sets \n13.Find Subset of two sets");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
         case 1:
         {
             /* code */
-            NODE* S=create_set();
+            NODE *new_set = create_set();
             break;
         }
 
         case 2:
         {
-            build(S_n, S_elements, new_set);
+            int x;
+            int flag=1;
+            while(flag!=0)
+            {
+                printf("\nEnter the number you want to add to the set [Press 0 to exit]");
+                scanf("%d",&x);
+                printf("test11");
+                if(x==0)
+                {
+                    flag=0;
+                    printf("test21");
+                }
+                else
+                {
+                    printf("test22");
+                    add_element(new_set, x);
+                }
+                
+                
+            }
             break;
         }
 
@@ -482,8 +506,8 @@ int main()
         {
             int x;
             printf("/nEnter element x to find whether its a part of the set: ");
-            scanf("%d",&x);
-            is_element_of(new_set,x);
+            scanf("%d", &x);
+            is_element_of(new_set, x);
             break;
         }
 
@@ -497,7 +521,7 @@ int main()
         {
             int n;
             printf("\nWe will create an empty set with capacity n, enter n: ");
-            set_n=create_with_capacity(n);
+            set_n = create_with_capacity(n);
             break;
         }
 
@@ -505,8 +529,8 @@ int main()
         {
             printf("We will add element x to initial set, Enter x: ");
             int x;
-            scanf("%d",&x);
-            new_set=add_element(new_set,x);
+            scanf("%d", &x);
+            new_set = add_element(new_set, x);
             break;
         }
 
@@ -515,7 +539,7 @@ int main()
             printf("Enter x we will remove it from the set if its present: ");
             int x;
             scanf("%d", &x);
-            remove_element(new_set,x);
+            remove_element(new_set, x);
             break;
         }
 
@@ -523,28 +547,29 @@ int main()
         {
             printf("Find capacity of set, you have two options\n 1.Find capacity of set that we created in option 1 and added values in option 2\nOR\nFind capacity of set we created without elemens in option 6\nEnter your choice: ");
             int option;
-            scanf("%d",&option);
+            scanf("%d", &option);
 
-            
-            if (option==1) {
-                int cap=capacity(new_set);
-                printf("\nCapacity of set is %d ",cap);
-            }
-            else if(option==2) {
-                int cap=capacity(set_n);
+            if (option == 1)
+            {
+                int cap = capacity(new_set);
                 printf("\nCapacity of set is %d ", cap);
             }
-            else {
+            else if (option == 2)
+            {
+                int cap = capacity(set_n);
+                printf("\nCapacity of set is %d ", cap);
+            }
+            else
+            {
                 printf("Option you entered was incorrect");
             }
-            
 
             break;
         }
 
         case 10:
         {
-            NODE *union_set=find_union(S,T);
+            NODE *union_set = find_union(S, T);
             printf("/nBelow is Uion of Sets S and T");
             enumerate(union_set);
             break;
@@ -552,7 +577,7 @@ int main()
 
         case 11:
         {
-            NODE *intersection_set=find_intersection(S, T);
+            NODE *intersection_set = find_intersection(S, T);
             printf("/nBelow is Intersection of Sets S and T");
             enumerate(intersection_set);
             break;
@@ -561,7 +586,7 @@ int main()
         case 12:
         {
 
-            NODE *difference_set=find_difference(S, T);
+            NODE *difference_set = find_difference(S, T);
             printf("/nBelow is Difference of Sets S and T");
             enumerate(difference_set);
             break;
@@ -584,7 +609,9 @@ int main()
         default:
             printf("Please choose correct option");
             break;
+        }
     }
+    
 
 
 }
