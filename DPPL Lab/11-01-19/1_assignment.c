@@ -117,58 +117,48 @@ NODE *build(int number_of_elements, int set_elements[])
 
 NODE* add_element(NODE *head, int element)
 {
-    NODE *current;
-    current = head;
-    NODE *temp = (NODE *)malloc(sizeof(NODE));
+  NODE *current;
+  current = head;
+  NODE *temp = (NODE *)malloc(sizeof(NODE));
 
-    temp->data = element;
+  temp->data = element;
 
-    temp->next = NULL;
+  temp->next = NULL;
 
-    if(!is_element_of(head,element))
-    {
-        if (head == NULL)
-        {
-            head = temp;
-        }
-        else
-        {
-            while (current->next != NULL)
-            {
-                current = current->next;
-            }
-            current->next = temp;
-        }
-    }
-    else{
-        printf("\nElement already exists in set.");
-    }
-    
+  if(!is_element_of(head,element))
+  {
+      if (head == NULL)
+      {
+          head = temp;
+      }
+      else
+      {
+          while (current->next != NULL)
+          {
+              current = current->next;
+          }
+          current->next = temp;
+      }
+  }
+  else{
+      printf("\nElement already exists in set.");
+  }
+  
 return head;
 } //end of add element code
 
 void remove_element(NODE *head, int x)
 {   
-    int is_present = is_element_of(head, x);
-    if (is_present == 0)
+    NODE* current=head;
+	  while(current->next!=NULL)
     {
-        printf("/nThe element %d is not present in the set", x);
-    }
-    else if(is_present==1)
+		if(current->next->data==x)
     {
-        NODE *current = head;
-        NODE* previous= NULL;
-        NODE* temp= NULL;
-        while (current->data!=x)
-        {
-            previous=current;
-            current = current->next;
-        }
-
-        previous=previous->next->next;
-        free(current);
-    }
-    
+			current->next=current->next->next;
+			return;
+		}
+		current=current->next;
+  }
 }
 
 NODE* copy(NODE* old);//copy function must be before find_union
@@ -210,23 +200,37 @@ return head;
 
 //find_difference returns set which is difference of two entered sets
 NODE* find_difference(NODE *S, NODE *T)
-{
+{   
+    NODE *first;
+    NODE *second;
+    if(cardinality(S)>cardinality(T))
+    {
+      first=S;
+      second=T;
+    }
+    else
+    {
+      first=T;
+      second=S;
+    }
+    
     NODE *current;
-    NODE *first=S;
-
+    //NODE *first=S;
+    //NODE* second=T;
     current=NULL;
 
     while (first!= NULL)
     {
         //for each element of S find whether it exists in T 
-        if (!is_element_of(T, first->data))
+        if (!is_element_of(second, first->data))
         {
             NODE *temp = (NODE *)malloc(sizeof(NODE));
             temp->data = first->data;
             temp->next = NULL;
             if(current==NULL)
                 current=temp;
-            else{
+            else
+            {
                 temp->next=current;
                 current=temp;
             }
@@ -240,7 +244,17 @@ NODE* find_difference(NODE *S, NODE *T)
 NODE *find_intersection(NODE *S, NODE *T)
 {
     NODE* diff = find_difference(S, T);
-    diff = find_difference(S, diff);
+    
+    if(cardinality(S)>cardinality(T))
+    {
+      diff = find_difference(S, diff);
+    }
+    else
+    {
+      diff = find_difference(T, diff);
+    }
+
+    
     return diff;
 }
 
@@ -253,22 +267,23 @@ int is_subset(NODE *S, NODE *T) //returns 1 if S is subset of T
 
     if(s_size>t_size)
     {
-        printf("Set S is larger than T, hence it cannot be subset of T");
+        printf("\nSet S is larger than T, hence it cannot be subset of T");
     }
     else
     {
         NODE *first = S;
         NODE *second = T;
-
-        while (first->next != NULL)
+        int found;
+        while (first!= NULL)
         {
-            int found = is_element_of(second, first->data);
-            if (found == 1)
-            {
-                return 0;
-            }
+            found = is_element_of(second, first->data);
+            first=first->next;
         }
-        return 1;
+        if(found==1)
+        {
+          return 1;
+        }
+        return 0;
     }
 }
 
@@ -293,43 +308,6 @@ NODE* copy(NODE* old)
 int main()
 {
     NODE *new_set,*set_n,*S,*T;
-
-    printf("\nBefore we start we must create two sample sets");
-
-    //Create set S
-    printf("\nEnter number of elements you want to add to the set S: ");
-    int S_n;
-    scanf("%d", &S_n);
-
-    int S_elements[S_n];
-
-    for (int i = 0; i < S_n; i++)
-    {
-        printf("\nEnter element number %d: ", i + 1);
-        int temp;
-        scanf("%d", &temp);
-        S_elements[i]=temp;
-    }
-    S = build(S_n, S_elements);
-    enumerate(S);
-    //End of create set S
-
-    //Create set T
-    printf("\nEnter number of elements you want to add to the set T: ");
-    int T_n;
-    scanf("%d", &T_n);
-
-    int T_elements[T_n];
-
-    for (int i = 0; i < T_n; i++)
-    {
-        printf("\nEnter element number %d: ", i + 1);
-        scanf("%d", &T_elements[i]);
-    }
-    
-    T=build(T_n, T_elements);
-    enumerate(T);
-    //End of create set T
 
         new_set = create_set();       
             int x;
@@ -388,31 +366,67 @@ int main()
     remove_element(new_set, x);
     enumerate(new_set);
 
+
+    printf("\nBefore we start dynamic operations we must create two sample sets");
+
+    //Create set S
+    printf("\nEnter number of elements you want to add to the set S: ");
+    int S_n;
+    scanf("%d", &S_n);
+
+    int S_elements[S_n];
+
+    for (int i = 0; i < S_n; i++)
+    {
+        printf("\nEnter element number %d: ", i + 1);
+        int temp;
+        scanf("%d", &temp);
+        S_elements[i]=temp;
+    }
+    S = build(S_n, S_elements);
+    enumerate(S);
+    //End of create set S
+
+    //Create set T
+    printf("\nEnter number of elements you want to add to the set T: ");
+    int T_n;
+    scanf("%d", &T_n);
+
+    int T_elements[T_n];
+
+    for (int i = 0; i < T_n; i++)
+    {
+        printf("\nEnter element number %d: ", i + 1);
+        scanf("%d", &T_elements[i]);
+    }
+    
+    T=build(T_n, T_elements);
+    enumerate(T);
+    //End of create set T
     
 
     NODE *union_set = find_union(S, T);
-    printf("\nBelow is Uion of Sets S and T");
+    printf("\n\nBelow is Union of Sets S and T");
     enumerate(union_set);
 
     
     NODE *intersection_set = find_intersection(S, T);
-    printf("\nBelow is Intersection of Sets S and T");
+    printf("\n\nBelow is Intersection of Sets S and T");
     enumerate(intersection_set);
  
     NODE *difference_set = find_difference(S, T);
-    printf("\nBelow is Difference of Sets S and T");
+    printf("\n\nBelow is Difference of Sets S and T");
     enumerate(difference_set);
 
     int subset = is_subset(S, T);
     if (subset == 1)
     {
-        printf("\nS is a subset of T");
+        printf("\n\nS is a subset of T");
     }
     else if (subset == 0)
     {
-        printf("\nS is NOT a subset of T");
+        printf("\n\nS is NOT a subset of T");
     }
       
 }
-    
-
+  
