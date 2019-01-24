@@ -1,4 +1,4 @@
-1.Initialize set 
+1. Initialize set 
 2. Add elements to set 
 3. Enumerate set 
 4. Find whether x is element of set 
@@ -9,5 +9,5 @@
 10. Find Union of two Sets 
 11. Find Intersection of Two Sets
 12. Find difference of two sets 
-13.Find Subset of two sets");
+13. Find Subset of two sets");
     
