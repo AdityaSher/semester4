@@ -12,13 +12,14 @@ while(1):
         print('Input was LOW')
     """
     if io.input(22):
+        time.sleep(5)
         print('Input was HIGH')
         break
     
     
     else:
         print('Input was LOW')
-        time.sleep(5)
+        
 
 """
 while(1):
