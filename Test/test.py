@@ -1,6 +1,6 @@
 import RPi.GPIO as io
 import time
-io.setmode(io.BOARD)
+io.setmode(io.BCM)
 io.setup(22, io.IN)
 
 time.sleep(5)
