@@ -8,7 +8,7 @@ while(1):
     print(io.input(15))
     time.sleep(5)
     print(io.input(22))
-    break;
+    
     """if io.input(22):
         print('Input was 22HIGH')
         break
