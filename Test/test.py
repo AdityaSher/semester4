@@ -5,14 +5,14 @@ x=io.setup(15, io.IN)
 io.setup(22, io.IN)
 
 while(1):
-
-    
-
-    if io.input(22):
+    time.sleep(5)
+    print(io.input(22))
+    break;
+    """if io.input(22):
         print('Input was 22HIGH')
         break
         print("22")
-    
+    """
     """else:
         print('Input was 22LOW')"""
 
