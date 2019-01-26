@@ -4,9 +4,9 @@ io.setmode(io.BOARD)
 io.setup(22, io.IN)
 
 
-    x=io.input(22)
-    print(x)
-    time.sleep(2)
+x=io.input(22)
+print(x)
+time.sleep(2)
     
     """if io.input(22):
         print('Input was 22HIGH')
