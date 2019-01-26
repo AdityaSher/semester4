@@ -4,6 +4,6 @@ io.setmode(io.BOARD)
 io.setup(22, io.IN)
 
 while(1):
-    x=io.input(22)
+    x=io.input(22)    
+    time.sleep(1)
     print(x)
-    time.sleep(2)
