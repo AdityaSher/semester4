@@ -53,7 +53,7 @@ if humidity is not None and temperature is not None:
     data = 'http://hackhire.azurewebsites.net/api/iot/data/{Temparature:"'+str(temperature)+'",Humadity:"'+str(humidity)+'",From: "dht"}'
     print(data)
     contents = urllib.urlopen(
-        urllib.urlencode(data)).read()  # for get protocol
+        urllib.quote(data)).read()  # for get protocol
     print('Temp={0:0.1f}*  Humidity={1:0.1f}%'.format(temperature, humidity))
 else:
     print('Failed to get reading. Try again!')
