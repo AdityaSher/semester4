@@ -12,7 +12,7 @@ while(1):
         print('Input was LOW')
     """
     if io.input(22):
-        time.sleep(5)
+        time.sleep(2)
         print('Input was HIGH')
         break
     
