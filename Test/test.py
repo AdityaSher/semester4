@@ -6,7 +6,7 @@ io.setup(22, io.IN)
 
 while(1):
     time.sleep(5)
-    print(io.input(22))
+    print(io.input(15))
     break;
     """if io.input(22):
         print('Input was 22HIGH')
