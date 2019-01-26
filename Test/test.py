@@ -1,5 +1,5 @@
 import RPi.GPIO as io
-
+import time 
 io.setmode(io.BOARD)
 x=io.setup(15, io.IN)
 io.setup(22, io.IN)
@@ -14,8 +14,11 @@ while(1):
     if io.input(22):
         print('Input was HIGH')
         break
+    
+    
     else:
         print('Input was LOW')
+        time.sleep(5)
 
 """
 while(1):
