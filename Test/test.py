@@ -5,5 +5,7 @@ io.setup(22, io.IN)
 
 while(1):
     x=io.input(22)    
-    time.sleep(1)
     print(x)
+    if(x==1):
+        print("high")
+        break
