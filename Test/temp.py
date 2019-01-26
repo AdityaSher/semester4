@@ -67,6 +67,8 @@ if humidity is not None and temperature is not None:
 
 
     print('Temp={0:0.1f}*  Humidity={1:0.1f}%'.format(temperature, humidity))
+    data1 = 'http://hackhire.azurewebsites.net/api/iot/data/%7BTemparature:"'+str(temperature)+'",Humadity:"'+str(humidity)+'",From:"dht"%7D'
+
 else:
     print('Failed to get reading. Try again!')
     sys.exit(1)
