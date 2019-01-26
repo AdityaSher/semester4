@@ -54,16 +54,16 @@ humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
 if humidity is not None and temperature is not None:
     #data = 'http://hackhire.azurewebsites.net/api/iot/data/{Temparature:"'+str(temperature)+'",Humadity:"'+str(humidity)+'",From: "dht"}'
     
-    data = 'http://hackhire.azurewebsites.net/api/iot/data/%7BTemparature:"'+str(temperature)+'",Humadity:"'+str(humidity)+'",From:"dht"%7D'
+    data1 = 'http://hackhire.azurewebsites.net/api/iot/data/%7BTemparature:"'+str(temperature)+'",Humadity:"'+str(humidity)+'",From:"dht"%7D'
 
-    print(data)
+    print(data1)
     #contents = urllib2.urlopen(data).read()
 
     
 
-    payload = open("request.json")
+    #payload = open("request.json")
     headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
-    r = requests.post(data, data=payload, headers=headers)
+    r = requests.post(data1, headers=headers)
 
 
     print('Temp={0:0.1f}*  Humidity={1:0.1f}%'.format(temperature, humidity))
