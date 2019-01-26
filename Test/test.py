@@ -1,7 +1,7 @@
 import RPi.GPIO as io
 
 io.setmode(io.BOARD)
-x=io.setup(22, io.IN)
+x=io.setup(15, io.IN)
 #x = io.output(15, not io.input(15))
 
 
