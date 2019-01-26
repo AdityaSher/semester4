@@ -25,6 +25,8 @@ import Adafruit_DHT
 
 import urllib2
 import urllib
+import requests
+import json
 
 # Parse command line parameters.
 sensor_args = {'11': Adafruit_DHT.DHT11,
@@ -57,7 +59,8 @@ if humidity is not None and temperature is not None:
     print(data)
     #contents = urllib2.urlopen(data).read()
 
-    import requests
+    
+
     payload = open("request.json")
     headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
     r = requests.post(data, data=payload, headers=headers)
