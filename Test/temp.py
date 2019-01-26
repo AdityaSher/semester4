@@ -63,7 +63,7 @@ if humidity is not None and temperature is not None:
 
     #payload = open("request.json")
     headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
-    r = requests.post(data1, headers=headers)
+    r = requests.get(data1, headers=headers)
 
 
     print('Temp={0:0.1f}*  Humidity={1:0.1f}%'.format(temperature, humidity))
