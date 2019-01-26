@@ -1,7 +1,6 @@
 import RPi.GPIO as io
 import time
 io.setmode(io.BOARD)
-io.setup(15, io.IN)
 io.setup(22, io.IN)
 
 while(1):
