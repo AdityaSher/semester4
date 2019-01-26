@@ -6,7 +6,7 @@ io.setup(22, io.IN)
 
     x=io.input(22)
     print(x)
-    time.sleep(5)
+    time.sleep(2)
     
     """if io.input(22):
         print('Input was 22HIGH')
