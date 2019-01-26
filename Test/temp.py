@@ -50,9 +50,9 @@ humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
 # guarantee the timing of calls to read the sensor).
 # If this happens try again!
 if humidity is not None and temperature is not None:
-    data = 'http://hackhire.azurewebsites.net/api/iot/data/{Temparature:"'+str(temperature)+'",Humadity:"'+str(humidity)+'",From: "dht"}'
+    #data = 'http://hackhire.azurewebsites.net/api/iot/data/{Temparature:"'+str(temperature)+'",Humadity:"'+str(humidity)+'",From: "dht"}'
     
-    data = 'http://hackhire.azurewebsites.net/api/iot/data/%7BTemparature:'+str(temperature)+',Humadity:'+str(humidity)+',From:"dht"%7D'
+    data = 'http://hackhire.azurewebsites.net/api/iot/data/%7BTemparature:"'+str(temperature)+'",Humadity:"'+str(humidity)+'",From:"dht"%7D'
 
     print(data)
     contents = urllib2.urlopen(data).read()  # for get protocol
