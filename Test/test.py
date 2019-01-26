@@ -3,7 +3,7 @@ import time
 io.setmode(io.BOARD)
 io.setup(22, io.IN)
 
-
-x=io.input(22)
-print(x)
-time.sleep(2)
+while(1)
+    x=io.input(22)
+    print(x)
+    time.sleep(2)
