@@ -5,8 +5,6 @@ io.setup(15, io.IN)
 io.setup(22, io.IN)
 
 while(1):
-    print(io.input(15))
-    time.sleep(5)
     print(io.input(22))
     
     """if io.input(22):
