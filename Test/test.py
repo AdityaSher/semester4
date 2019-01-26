@@ -7,13 +7,14 @@ io.setup(22, io.IN)
 while(1):
 
     
+
     if io.input(22):
         print('Input was 22HIGH')
         break
         print("22")
     
-    else:
-        print('Input was 22LOW')
+    """else:
+        print('Input was 22LOW')"""
 
 """
 while(1):
