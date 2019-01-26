@@ -5,9 +5,17 @@ x=io.setup(15, io.IN)
 io.setup(22, io.IN)
 
 while(1):
+
+    """if io.input(15):
+        print('Input was HIGH')
+    else:
+        print('Input was LOW')
+    """
     if io.input(22):
         print('Input was HIGH')
         break
+    else:
+        print('Input was LOW')
 
 """
 while(1):
