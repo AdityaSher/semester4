@@ -1,8 +1,8 @@
 import RPi.GPIO as io
 
 io.setmode(io.BOARD)
-io.setup(22, io.OUT)
-x = io.output(22, not io.input(22))
+io.setup(15, io.OUT)
+x = io.output(15, not io.input(15))
 
 
 while(1):
