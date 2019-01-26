@@ -24,7 +24,7 @@ import sys
 import Adafruit_DHT
 
 import urllib2
-
+import urllib
 
 # Parse command line parameters.
 sensor_args = {'11': Adafruit_DHT.DHT11,
@@ -52,8 +52,8 @@ humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
 if humidity is not None and temperature is not None:
     data = 'http://hackhire.azurewebsites.net/api/iot/data/{Temparature:"'+str(temperature)+'",Humadity:"'+str(humidity)+'",From: "dht"}'
     print(data)
-    contents = urllib2.urlopen(
-        urllib2.urlencode(data)).read()  # for get protocol
+    contents = urllib.urlopen(
+        urllib.urlencode(data)).read()  # for get protocol
     print('Temp={0:0.1f}*  Humidity={1:0.1f}%'.format(temperature, humidity))
 else:
     print('Failed to get reading. Try again!')
