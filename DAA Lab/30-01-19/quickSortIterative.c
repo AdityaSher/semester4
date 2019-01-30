@@ -11,8 +11,9 @@
 /* This function is same in both iterative and recursive*/
 int partition (int arr[], int l, int h) 
 { 
-    int *arr=(int *)malloc(sizeof(int)*size);
+    
     int x = arr[h]; 
+    
     int i = (l - 1); 
   
     for (int j = l; j <= h- 1; j++) 
@@ -26,7 +27,8 @@ int partition (int arr[], int l, int h)
     swap (&arr[i + 1], &arr[h]); 
     return (i + 1); 
 } 
-  
+
+
 /* A[] --> Array to be sorted,  
    l  --> Starting index,  
    h  --> Ending index */
@@ -106,6 +108,8 @@ void quickSortIterative (int arr[], int l, int h)
             fprintf(ptr2,"%d ",*(ptr+i));              
         } 
 		fclose(ptr2);
-        free(ptr)
+        
+        free(ptr);
+
       return 0;
       }
