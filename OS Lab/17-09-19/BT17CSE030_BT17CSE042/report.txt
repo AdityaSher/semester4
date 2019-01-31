@@ -1,0 +1,339 @@
+﻿Prerequisite_1: Understand proc file system of linux
+
+Ref: https://www.tldp.org/LDP/Linux-Filesystem-Hierarchy/html/proc.html
+
+Proc file system is a pseudo file system.
+It contains run-time system information
+It is the control and information center for the kernel.
+
+
+few related commands: 
+
+lsmod = cat /proc/modules) (?)
+lspci = cat /proc/pci (?)
+
+Unique point: All files have a size zero except kcore,mtrr and self.
+
+ps -aux ?
+
+ls -ltr ?
+
+
+
+proc stat command:
+
+Ref: http://man7.org/linux/man-pages/man5/proc.5.html
+(Status information about the process ...)
+
+
+tree command
+
+cat /proc/$$/status ($$=bash)
+
+cd /proc/$$/cwd = find current working directory
+
+
+
+Q1: Information about machine using proc
+
+Command:nproc = Number of processors
+8
+
+Command:top (press 1 after entering command)
+
+Tasks: 297 total,   1 running, 226 sleeping,   0 stopped,   0 zombie
+%Cpu0  :  1.0 us,  0.3 sy,  0.0 ni, 98.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.
+%Cpu1  :  3.0 us,  0.3 sy,  0.0 ni, 96.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.
+%Cpu2  :  0.7 us,  0.7 sy,  0.0 ni, 98.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.
+%Cpu3  :  0.7 us,  0.7 sy,  0.0 ni, 98.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.
+%Cpu4  :  2.0 us,  0.3 sy,  0.0 ni, 97.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.
+%Cpu5  :  1.0 us,  0.3 sy,  0.0 ni, 98.3 id,  0.0 wa,  0.0 hi,  0.3 si,  0.
+%Cpu6  :  2.0 us,  0.3 sy,  0.0 ni, 97.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.
+%Cpu7  :  4.3 us,  0.3 sy,  0.0 ni, 95.3 id,  0.0 wa,  0.0 hi,  0.0 si,  0.
+
+
+
+KiB Mem : 16316308 total, 11996996 free,  1765116 used,  2554196 buff/cache
+KiB Swap:  2097148 total,  2097148 free,        0 used. 13873136 avail Mem
+
+
+***Memory***
+
+cat /proc/meminfo
+
+MemTotal:       16316308 kB
+MemFree:        13173712 kB
+MemAvailable:   14205620 kB
+Buffers:          136032 kB
+Cached:          1472496 kB
+SwapCached:            0 kB
+Active:          1705636 kB
+Inactive:        1108632 kB
+Active(anon):    1216408 kB
+Inactive(anon):   376828 kB
+Active(file):     489228 kB
+Inactive(file):   731804 kB
+Unevictable:          16 kB
+Mlocked:              16 kB
+SwapTotal:       2097148 kB
+SwapFree:        2097148 kB
+Dirty:                56 kB
+Writeback:             0 kB
+AnonPages:       1206028 kB
+Mapped:           375084 kB
+Shmem:            387496 kB
+Slab:             183740 kB
+SReclaimable:     125176 kB
+SUnreclaim:        58564 kB
+KernelStack:       12560 kB
+PageTables:        50284 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:    10255300 kB
+Committed_AS:    6842532 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:           0 kB
+VmallocChunk:          0 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+CmaTotal:              0 kB
+CmaFree:               0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:      206440 kB
+DirectMap2M:     4929536 kB
+DirectMap1G:    11534336 kB
+
+
+Command: vmsat -f 
+
+******Number of forks: 6146 forks*************
+
+
+
+Command: lscpu
+
+Architecture:        x86_64
+CPU op-mode(s):      32-bit, 64-bit
+Byte Order:          Little Endian
+CPU(s):              8
+On-line CPU(s) list: 0-7
+Thread(s) per core:  2
+Core(s) per socket:  4
+Socket(s):           1
+NUMA node(s):        1
+Vendor ID:           GenuineIntel
+CPU family:          6
+Model:               158
+Model name:          Intel(R) Core(TM) i7-7700 CPU @ 3.60GHz
+Stepping:            9
+CPU MHz:             866.153
+CPU max MHz:         4200.0000
+CPU min MHz:         800.0000
+BogoMIPS:            7200.00
+Virtualization:      VT-x
+L1d cache:           32K
+L1i cache:           32K
+L2 cache:            256K
+L3 cache:            8192K
+NUMA node0 CPU(s):   0-7
+Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb invpcid_single pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm mpx rdseed adx smap clflushopt intel_pt xsaveopt xsavec xgetbv1 xsaves dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp flush_l1d
+
+
+******Number of Context switches******
+
+Command: grep /proc/12/status
+OR
+Command: procinfo
+
+Name:	cpuhp/0
+Umask:	0000
+State:	S (sleeping)
+Tgid:	12
+Ngid:	0
+Pid:	12
+PPid:	2
+TracerPid:	0
+Uid:	0	0	0	0
+Gid:	0	0	0	0
+FDSize:	64
+Groups:	 
+NStgid:	12
+NSpid:	12
+NSpgid:	0
+NSsid:	0
+Threads:	1
+SigQ:	0/63144
+SigPnd:	0000000000000000
+ShdPnd:	0000000000000000
+SigBlk:	0000000000000000
+SigIgn:	ffffffffffffffff
+SigCgt:	0000000000000000
+CapInh:	0000000000000000
+CapPrm:	0000003fffffffff
+CapEff:	0000003fffffffff
+CapBnd:	0000003fffffffff
+CapAmb:	0000000000000000
+NoNewPrivs:	0
+Seccomp:	0
+Speculation_Store_Bypass:	thread vulnerable
+Cpus_allowed:	01
+Cpus_allowed_list:	0
+Mems_allowed:	00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001
+Mems_allowed_list:	0
+voluntary_ctxt_switches:	17
+nonvoluntary_ctxt_switches:	0
+
+
+
+
+//Q2 Process status of the file  cpu-print.c
+
+Step 1: Find PID
+
+Command: top | grep cpu-print.c
+
+pid= 4226
+
+
+
+Step 2 monitor Status: 
+
+Command: cat /proc/4226/stat
+
+
+For:
+cpu-print.c
+
+4226 (cpu-print) R 2189 4226 2189 34816 4226 4194304 71 0 0 0 923 3589 0 0 20 0 1 0 204746 4616192 179 18446744073709551615 94427656957952 94427656960272 140724990673184 0 0 0 0 0 0 0 0 0 17 3 0 0 0 0 0 94427659058608 94427659059216 94427659407360 140724990681730 140724990681742 140724990681742 140724990685164 0
+
+User: 5747 
+Kernel: 22405
+
+
+cpu.c:
+
+pid=4725
+
+cat /proc/4725/stat
+4725 (cpu) R 4672 4725 4672 34822 4725 4194304 64 0 0 0 6500 0 0 0 20 0 1 0 308415 4481024 180 18446744073709551615 94583883993088 94583883995128 140726541080832 0 0 0 0 0 0 0 0 0 17 0 0 0 0 0 0 94583886093808 94583886094352 94583917912064 140726541087430 140726541087436 140726541087436 140726541090802 0
+
+User: 6500
+Kernel: 0
+
+No system call generated in cpu.c
+
+**************************
+
+Q3:Open a bash shell. Find its pid. Write down the process tree starting from the first init process
+(pid = 1) to your bash shell, and describe how you obtained it. You may want to use the pstree
+command.
+ans:
+  PID TTY          TIME CMD
+ 4186 pts/0    00:00:00 bash
+ 4204 pts/0    00:00:00 man
+ 4214 pts/0    00:00:00 pager
+ 4233 pts/0    00:00:00 top
+ 4234 pts/0    00:00:00 ps
+ pstree -p -s 4186
+systemd(1)───systemd(1311)───gnome-terminal-(4176)───bash(4186)─┬─man(4204)───p+
+                                                                ├─pstree(4240)
+                                                                └─top(4233)
+
+-p:show pids here pid=4186
+-s:shows parent processes of specified process(4186);
+Q4:
+Consider the following commands that you can type in the bash shell: cd, ls, history, ps. Which
+of these are system programs that are simply executed by the bash shell, and which are
+implemented by the bash code itself?
+ans:
+go to computer search file for ls,cd,history,ps
+bash code whos file is not found=history,cd
+excuted by bash=whos file is found=ls,ps
+
+
+Q5: Run the following command in bash.
+$./cpu-print > /tmp/tmp.txt &
+Find out the pid of the new process spawned to run this command. Go to the proc folder of this process, and describe where its I/O file descriptors 0, 1, 2 are pointing to. Can you describe how I/O redirection is being implemented by bash?
+
+
+pid=2189
+ls -l /proc/2189/fd
+total 0
+lrwx------ 1 sudhir sudhir 64 Jan 30 16:55 0 -> /dev/pts/0
+l-wx------ 1 sudhir sudhir 64 Jan 30 16:55 1 -> /home/sudhir/Documents/temp.txt
+lrwx------ 1 sudhir sudhir 64 Jan 30 16:55 2 -> /dev/pts/0
+
+IO redirection is implemented in bash by using below I/O 
+0=stdin
+1=stdout
+2=stderr 
+
+
+Q8:
+8. Run the following command with cpu-print.
+$./cpu-print | grep hello
+Once again, identify which processes are spawned by bash, look at the file descriptor
+information in their proc folders, and use it to explain how pipes work in bash.
+
+
+$./a.out | grep hello
+
+The command spawns two processes ./a.out [pid=2693] and grep [pid=2694]
+2693 sudhir    20   0    4508    708    644 R 100.0  0.0   0:16.15 a.out       
+2694 sudhir    20   0   21536   1104   1008 R  15.3  0.0   0:02.44 grep
+
+
+Process ./a.out output gives input to pipe using fd[1] to pipe
+Which can be verified using below command:
+
+ls -l /proc/2693/fd
+total 0
+lrwx------ 1 sudhir sudhir 64 Jan 30 17:07 0 -> /dev/pts/0
+l-wx------ 1 sudhir sudhir 64 Jan 30 17:07 1 -> 'pipe:[43556]'
+lrwx------ 1 sudhir sudhir 64 Jan 30 17:07 2 -> /dev/pts/0
+
+
+Process grep output gives input to pipe using fd[1] to pipe
+
+ ls -l /proc/2694/fd
+total 0
+lr-x------ 1 sudhir sudhir 64 Jan 30 17:08 0 -> 'pipe:[43556]'
+lrwx------ 1 sudhir sudhir 64 Jan 30 17:08 1 -> /dev/pts/0
+lrwx------ 1 sudhir sudhir 64 Jan 30 17:08 2 -> /dev/pts/0
+
+Also its interesting to note one process dies if other is killed!
+Which can be observed as below
+$ kill 2693
+$ kill 2694
+bash: kill: (2694) - No such process
+
+SO we can see that in bash processes share data using pipelines 
+Where file directors fd[0] and fd[1]
+
+The output of one process is sent to another using pipe 43556 (as per above output) fd[1]
+and input is read by another process using fd[0] in the same pipe 43556
+
+It must be noted that at one time only one fd can be active on one side.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
