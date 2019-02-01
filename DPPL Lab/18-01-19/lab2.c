@@ -56,7 +56,7 @@ void preorder(NODE *root)
     {
         printf("%d",root->data);
         preorder(root->left);
-        prerder(root->right);
+        preorder(root->right);
     }
 }
 
