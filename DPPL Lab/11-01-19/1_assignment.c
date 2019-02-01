@@ -147,18 +147,27 @@ NODE* add_element(NODE *head, int element)
 return head;
 } //end of add element code
 
-void remove_element(NODE *head, int x)
+NODE* remove_element(NODE *head, int x)
 {   
     NODE* current=head;
-	  while(current->next!=NULL)
+
+    if(head->data==x)
+    {
+        current=head;
+        head=head->next;
+        free(head)
+    }
+
+	while(current->next!=NULL)
     {
 		if(current->next->data==x)
-    {
+        {
 			current->next=current->next->next;
 			return;
 		}
 		current=current->next;
-  }
+    }
+  return head;
 }
 
 NODE* copy(NODE* old);//copy function must be before find_union
