@@ -1,4 +1,0 @@
-//Implement quick sort algortithm using divide and conquer methodology. Implement the iterative and recursive algorithm for quicksort.
-Show your comparative study when 
-1) Executed on unsorted list.
-2) Executed on already sorted list.
