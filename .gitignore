@@ -2,5 +2,6 @@ DPPL Lab/11-01-19/.vscode/settings.json
 DPPL Lab/11-01-19/a.exe
 
 .vscode
-.exe
-.out
+*.exe
+*.out
+DPPL Lab/18-01-19/a.exe
