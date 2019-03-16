@@ -1,0 +1,10 @@
+Q1 Implement breadth and depth first traversal in a Graph
+
+Breadth first Use a queue:
+Pop and Mark 
+
+
+Depth First: Use a stack
+
+
+Use adjacency matrix representation
